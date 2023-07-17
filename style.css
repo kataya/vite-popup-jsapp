@@ -1,0 +1,29 @@
+@import "https://js.arcgis.com/4.27/@arcgis/core/assets/esri/themes/light/main.css";
+html,
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.prefControl {
+    padding: 5px;
+    width: 200px;
+    height: 80px;
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+}
+
+.panel-side {
+  padding: 0px;
+  width: 390px;
+  height: 30%;
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  z-index: 60;
+  opacity: 0.9;
+}
