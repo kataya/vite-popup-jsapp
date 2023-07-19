@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "git": "git add . && git commit && git push origin main"
   },
   "devDependencies": {
     "chart.js": "^4.3.0",
