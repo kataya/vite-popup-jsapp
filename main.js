@@ -110,21 +110,6 @@ const legendExpand = new Expand({
 });
 view.ui.add(legendExpand, "bottom-right");
 
-// 都道府県の切替
-const prefExpand = new Expand({
-    view: view,
-    content: document.getElementById("prefcontrolsDiv"),
-    expandIconClass: "esri-icon-swap",
-});
-view.ui.add(prefExpand, "bottom-left");
-prefExpand.watch("expanded", (expanded) => {
-    if (expanded) {
-        document.querySelector(".prefControl").hidden = false;
-    } else {
-        document.querySelector(".prefControl").hidden = true;
-    }
- }); 
-
 let chikakojiLyrView; 
 view.when(() => {
 
@@ -168,6 +153,43 @@ toggleButton.addEventListener("click", () => {
         toggleButton.title = "パネルを畳む";
     }
 });
+
+
+// Gihub-pages に deploy したとき Expand widget が何故か出てこないので
+// 都道府県の切替は操作パネルの制御と同じようにする
+/*
+const prefExpand = new Expand({
+    view: view,
+    content: document.getElementById("prefcontrolsDiv"),
+    expandIconClass: "esri-icon-swap",
+});
+view.ui.add(prefExpand, "bottom-left");
+prefExpand.watch("expanded", (expanded) => {
+    if (expanded) {
+        document.querySelector(".prefControl").hidden = false;
+    } else {
+        document.querySelector(".prefControl").hidden = true;
+    }
+ });
+*/
+const prefPanel = document.getElementById("prefcontrolsDiv");
+const toggleButton2 = document.getElementById("toggle-button2");
+view.ui.add(toggleButton2, "bottom-left");
+toggleButton2.addEventListener("click", () => {
+    if (prefPanel.clientWidth == 200) {
+        prefPanel.style.width = "0px";
+        document.querySelector(".prefControl").hidden = true;
+        toggleButton2.icon = "chevron-right";
+        toggleButton2.title = "都道府県の切替パネルを展開";
+    }
+    else {
+        prefPanel.style.width = "200px";
+        document.querySelector(".prefControl").hidden = false;
+        toggleButton2.icon = "chevron-left";
+        toggleButton2.title = "都道府県の切替パネルを畳む";
+    }
+});
+
 
 // ポップアップの設定
 cityareaLyr.popupTemplate = CityPopupTemplate;
