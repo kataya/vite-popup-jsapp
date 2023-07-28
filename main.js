@@ -76,9 +76,17 @@ const map = new Map({
 map.add(cityareaLyr, 0);
 
 const view = new MapView({
-  container: "viewDiv",
-  map: map,
+    container: "viewDiv",
+    map: map,
+    popup: { // コンストラクターで dockEnabled と dockOptions を設定するとフィーチャの吹き出しでなくなるようです(v4.27からはそうみたい)
+        dockEnabled: true,
+        dockOptions: {
+           position: "top-right",
+           breakpoint: false
+        }
+    }
 });
+
 
 // 背景地図の切替
 const localSource = CreateLocalBasemapsSource();
@@ -112,8 +120,6 @@ view.ui.add(legendExpand, "bottom-right");
 
 let chikakojiLyrView; 
 view.when(() => {
-
-    view.popup.dockEnabled = true; // popup のドッキングをデフォルトで有効化 //API 4.27 だと有効にならない。。。
 
     chikakojiLyr.when(() => {
         cityareaLyr.queryExtent().then((response) => {
